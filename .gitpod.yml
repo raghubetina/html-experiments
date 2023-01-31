@@ -1,0 +1,20 @@
+image: jelaniwoods/appdev2023-rails-template
+
+tasks:
+  - before: |
+      source $(rvm 3.1.2 do rvm env --path)
+      bin/setup
+      .vscode/manage_extensions
+ports:
+  - port: 3000
+    onOpen: open-preview
+    visibility: public
+  - port: 9500-9999
+    onOpen: ignore
+  - port: 5432
+    onOpen: ignore
+
+vscode:
+  extensions:
+    - vortizhe.simple-ruby-erb
+    - aliariff.vscode-erb-beautify

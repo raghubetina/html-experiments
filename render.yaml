@@ -1,0 +1,22 @@
+databases:
+  - name: vanillarails
+    databaseName: vanillarails
+    user: vanillarails
+    plan: free
+
+services:
+  - type: web
+    name: vanillarails
+    env: ruby
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: vanillarails
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: SECRET_KEY_BASE
+      
